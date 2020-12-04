@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 
 const Task = require("./task");
 
-require("dotenv").config();
-
 const JWTSecret = process.env.JWTSecret;
 
 const userSchema = new mongoose.Schema(
