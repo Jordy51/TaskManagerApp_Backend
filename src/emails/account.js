@@ -4,13 +4,20 @@ const setgridAPIKey = process.env.SENDGRID_API_KEY;
 
 sgMail.setApiKey(setgridAPIKey);
 
-const sendWelcomeEmail = async (email, name) => {
-	await sgMail.send({
-		to: email,
-		from: "16etcit003@technonjr.org",
-		subject: "Thank you for joining!",
-		text: `Welcome to the app, ${name}. Let me know how you get along with the app.`,
-	});
+const sendWelcomeEmail = (email, name) => {
+	sgMail
+		.send({
+			to: email,
+			from: "16etcit003@technonjr.org",
+			subject: "Thank you for joining!",
+			text: `Welcome to the app, ${name}. Let me know how you get along with the app.`,
+		})
+		.then(() => {
+			console.log("WelcomeEmailSent")
+		})
+		.catch((e) => {
+			console.log(e.response.body);
+		});
 };
 
 const sendGoodByeEmail = async (email, name) => {
